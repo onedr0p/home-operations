@@ -1,0 +1,6 @@
+---
+version: '3'
+
+includes:
+  deps: .taskfiles/Taskfile_{{OS}}.yml
+  ansible: .taskfiles/Taskfile_ansible.yml

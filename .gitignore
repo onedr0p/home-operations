@@ -1,0 +1,10 @@
+*.vdi
+*.log
+.vagrant
+.DS_Store
+kubeconfig
+.vscode
+.tasks
+ignore
+
+roles/xanmanning.k3s*

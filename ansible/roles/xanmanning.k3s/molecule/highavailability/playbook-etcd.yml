@@ -1,0 +1,16 @@
+---
+- name: Converge
+  hosts: node*
+  become: true
+  vars:
+    molecule_is_test: true
+    k3s_release_version: v1.19
+    k3s_etcd_datastore: true
+    k3s_secrets_encryption: true
+    k3s_use_experimental: true
+  pre_tasks:
+    - name: Set each node to be a control node
+      set_fact:
+        k3s_control_node: true
+  roles:
+    - role: xanmanning.k3s

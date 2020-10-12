@@ -1,0 +1,54 @@
+---
+version: '3'
+
+vars:
+  ANSIBLE_HOSTS: ./ansible/inventory/cluster/hosts.yml
+  ANSIBLE_GROUPS: master:worker
+
+tasks:
+
+  deps: 
+    desc: Install Ansible Galaxy dependencies
+    cmds:
+    - ansible-galaxy install -r requirements.yml
+
+  ping:
+    desc: Ping all the k8s nodes
+    cmds:
+    - ansible {{.ANSIBLE_GROUPS}} -i {{.ANSIBLE_HOSTS}} --one-line -m ping 
+
+  list:
+    desc: List all the k8s nodes
+    cmds:
+    - ansible {{.ANSIBLE_GROUPS}} -i {{.ANSIBLE_HOSTS}} --list-hosts
+
+  playbook:os:
+    desc: Run the OS playbook across the k8s nodes
+    cmds:
+    - ansible-playbook -i {{.ANSIBLE_HOSTS}} ./ansible/playbooks/os.yml
+
+  playbook:k3s:
+    desc: Run the k3s playbook across the k8s nodes
+    cmds:
+    - ansible-playbook -i {{.ANSIBLE_HOSTS}} ./ansible/playbooks/k3s-{{if eq .UPGRADE "true"}}upgrade{{else}}install{{end}}.yml
+    vars:
+      UPGRADE: "{{.UPGRADE}}"
+
+  playbook:nuke:k3s:
+    desc: Run the k3s-nuke playbook across the k8s nodes
+    cmds:
+    - ansible-playbook -i {{.ANSIBLE_HOSTS}} ./ansible/playbooks/k3s-nuke.yml
+
+  reboot:
+    desc: Reboot all the k8s nodes
+    cmds:
+    - ansible {{.ANSIBLE_GROUPS}} -i {{.ANSIBLE_HOSTS}} -b -m shell -a "/sbin/shutdown -r {{if eq .HARD "true"}}now{{else}}1{{end}}"
+    vars:
+      HARD: "{{.HARD}}"
+
+  shutdown:
+    desc: Shutdown all the k8s nodes
+    cmds:
+    - ansible {{.ANSIBLE_GROUPS}} -i {{.ANSIBLE_HOSTS}} -b -m shell -a "/sbin/shutdown -h {{if eq .HARD "true"}}now{{else}}1{{end}}"
+    vars:
+      HARD: "{{.HARD}}"

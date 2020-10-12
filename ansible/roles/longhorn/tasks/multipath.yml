@@ -1,0 +1,27 @@
+---
+
+#
+# https://github.com/longhorn/longhorn/issues/1210#issuecomment-671689746
+#
+
+- name: longhorn | multipath | create multipath config directory
+  become: true
+  file:
+    path: "/etc/multipath/conf.d"
+    state: directory
+
+- name: longhorn | multipath | blacklist multipath for sd*
+  become: true
+  copy:
+    content: |
+      blacklist {
+        devnode "^sd[a-z0-9]+"
+      }
+    dest: /etc/multipath/conf.d/longhorn.conf
+
+- name: longhorn | multipathd | restart systemd service
+  systemd:
+    name: multipathd.service
+    daemon_reload: no
+    enabled: yes
+    state: restarted
