@@ -5,7 +5,7 @@ Documentation=https://github.com/adnanh/webhook/
 
 [Service]
 WorkingDirectory=/var/lib/home-operations
-ExecStart=/usr/local/bin/webhook -nopanic -hooks hooks.json -debug -logfile /var/log/webhook.log
+ExecStart=/usr/local/bin/webhook -nopanic -hooks power-outage/hooks.json -debug -logfile /var/log/webhook.log
 User=root
 Group=root
 
