@@ -1,7 +1,0 @@
-[
-    {
-        "id": "power-outage",
-        "execute-command": "power-outage/power-outage.sh",
-        "command-working-directory": "/var/lib/home-operations"
-    }
-]
