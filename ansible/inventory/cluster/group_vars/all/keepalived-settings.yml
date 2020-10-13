@@ -1,3 +1,5 @@
+---
+
 # Install keepalived and set a VIP
 # ...only enabled if you are using HA masters
 keepalived:

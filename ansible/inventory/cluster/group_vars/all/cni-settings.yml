@@ -1,3 +1,5 @@
+---
+
 # Use the Calico CNI driver instead of Flannel
 # ...adjust 'k3s_flannel_backend' and 'k3s_no_flannel' if you want to use flannel
 calico:

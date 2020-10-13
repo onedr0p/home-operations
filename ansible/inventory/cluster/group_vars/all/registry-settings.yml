@@ -1,3 +1,5 @@
+---
+
 # Configure a pull thru cache using an existing registry
 # ...requires a registry cache already set up
 registry:

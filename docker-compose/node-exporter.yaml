@@ -1,5 +1,5 @@
 ---
-version: '3.7'
+version: "3.7"
 services:
   nodeexporter:
     image: prom/node-exporter:v1.0.1
@@ -13,12 +13,12 @@ services:
       - /sys:/host/sys:ro
       - /:/rootfs:ro,rslave
     command:
-      - '--path.procfs=/host/proc'
-      - '--path.rootfs=/rootfs'
-      - '--path.sysfs=/host/sys'
-      - '--no-collector.time'
-      - '--no-collector.timex'
-      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc|mnt/ext)($$|/)'
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--no-collector.time"
+      - "--no-collector.timex"
+      - "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc|mnt/ext)($$|/)"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9100/metrics"]
       interval: 30s

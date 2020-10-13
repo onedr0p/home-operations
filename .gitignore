@@ -7,4 +7,4 @@ kubeconfig
 .tasks
 ignore
 
-roles/xanmanning.k3s*
+ansible/roles/xanmanning.k3s*
