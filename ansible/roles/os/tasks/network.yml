@@ -114,3 +114,9 @@
       net.bridge.bridge-nf-call-ip6tables = 1
       net.ipv6.ip_forward = 1
       {% endif %}
+  register: sysctl_network
+
+- name: network | reload sysctl
+  shell: sysctl -p /etc/sysctl.d/99-kubernetes-cri.conf
+  become: yes
+  when: sysctl_network.changed
