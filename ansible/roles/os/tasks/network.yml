@@ -117,6 +117,6 @@
   register: sysctl_network
 
 - name: network | reload sysctl
+  become: true
   shell: sysctl -p /etc/sysctl.d/99-kubernetes-cri.conf
-  become: yes
   when: sysctl_network.changed
