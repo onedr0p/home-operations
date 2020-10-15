@@ -1,5 +1,5 @@
 <h1 align="center">
-  My home Kubernetes cluster :sailboat:
+  My home operation projects :house:
   <br />
   <br />
   <img src="https://i.imgur.com/p1RzXjQ.png">
