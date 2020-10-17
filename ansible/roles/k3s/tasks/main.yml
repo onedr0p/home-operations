@@ -1,5 +1,12 @@
 ---
 
+- include: preconfigure.yml
+  when:
+  - k3s_control_node is defined
+  - k3s_control_node
+  tags:
+  - all
+
 - include: kubeconfig.yml
   tags:
   - kubeconfig

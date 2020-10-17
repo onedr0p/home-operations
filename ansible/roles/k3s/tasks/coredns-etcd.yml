@@ -1,22 +1,22 @@
 ---
 
-- name: cluster | coredns-etcd | load etcd ca file
-  become: true
-  slurp:
-    src: "/var/lib/rancher/k3s/server/tls/etcd/server-ca.crt"
-  register: b64_etcd_ca
+# - name: cluster | coredns-etcd | load etcd ca file
+#   become: true
+#   slurp:
+#     src: "/var/lib/rancher/k3s/server/tls/etcd/server-ca.crt"
+#   register: b64_etcd_ca
 
-- name: cluster | coredns-etcd | load etcd cert file
-  become: true
-  slurp:
-    src: "/var/lib/rancher/k3s/server/tls/etcd/server-client.crt"
-  register: b64_etcd_cert
+# - name: cluster | coredns-etcd | load etcd cert file
+#   become: true
+#   slurp:
+#     src: "/var/lib/rancher/k3s/server/tls/etcd/server-client.crt"
+#   register: b64_etcd_cert
 
-- name: cluster | coredns-etcd | load etcd cert key file
-  become: true
-  slurp:
-    src: "/var/lib/rancher/k3s/server/tls/etcd/server-client.key"
-  register: b64_etcd_cert_key
+# - name: cluster | coredns-etcd | load etcd cert key file
+#   become: true
+#   slurp:
+#     src: "/var/lib/rancher/k3s/server/tls/etcd/server-client.key"
+#   register: b64_etcd_cert_key
 
 - name: cluster | coredns-etcd | deploy secret to k3s manifest directory
   become: true
@@ -32,6 +32,6 @@
         name: coredns-etcd-secret
         namespace: kube-system
       data:
-        ca.crt: "{{ b64_etcd_ca.content }}"
-        cert.pem: "{{ b64_etcd_cert.content }}"
-        key.pem: "{{ b64_etcd_cert_key.content }}"
+        ca.crt: "{{ b64_etcd_ca }}"
+        cert.pem: "{{ b64_etcd_cert }}"
+        key.pem: "{{ b64_etcd_cert_key }}"

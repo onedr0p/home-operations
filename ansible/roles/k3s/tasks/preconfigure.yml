@@ -1,0 +1,23 @@
+---
+
+- name: cluster | checks | load etcd ca file
+  become: true
+  slurp:
+    path: "{{ item }}"
+  loop:
+  - "/var/lib/rancher/k3s/server/tls/etcd/server-ca.crt"
+  - "/var/lib/rancher/k3s/server/tls/etcd/server-client.crt"
+  - "/var/lib/rancher/k3s/server/tls/etcd/server-client.key"
+  register: b64_etcd
+  when:
+  - k3s_etcd_datastore is defined
+  - k3s_etcd_datastore
+
+- name: cluster | checks | set facts
+  set_fact:
+    b64_etcd_ca: "{{ b64_etcd['results'][0].content }}"
+    b64_etcd_cert: "{{ b64_etcd['results'][1].content }}"
+    b64_etcd_cert_key: "{{ b64_etcd['results'][2].content }}"
+  when:
+  - k3s_etcd_datastore is defined
+  - k3s_etcd_datastore

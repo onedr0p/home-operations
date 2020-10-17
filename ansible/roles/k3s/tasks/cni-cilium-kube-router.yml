@@ -1,31 +1,31 @@
 ---
 
-- name: cluster | cilium | load etcd ca file
-  become: true
-  slurp:
-    src: "/var/lib/rancher/k3s/server/tls/etcd/server-ca.crt"
-  register: b64_etcd_ca
-  when:
-  - cilium_kube_router.cilium.etcd is defined
-  - cilium_kube_router.cilium.etcd
+# - name: cluster | cilium | load etcd ca file
+#   become: true
+#   slurp:
+#     src: "/var/lib/rancher/k3s/server/tls/etcd/server-ca.crt"
+#   register: b64_etcd_ca
+#   when:
+#   - cilium_kube_router.cilium.etcd is defined
+#   - cilium_kube_router.cilium.etcd
 
-- name: cluster | cilium | load etcd cert file
-  become: true
-  slurp:
-    src: "/var/lib/rancher/k3s/server/tls/etcd/server-client.crt"
-  register: b64_etcd_cert
-  when:
-  - cilium_kube_router.cilium.etcd is defined
-  - cilium_kube_router.cilium.etcd
+# - name: cluster | cilium | load etcd cert file
+#   become: true
+#   slurp:
+#     src: "/var/lib/rancher/k3s/server/tls/etcd/server-client.crt"
+#   register: b64_etcd_cert
+#   when:
+#   - cilium_kube_router.cilium.etcd is defined
+#   - cilium_kube_router.cilium.etcd
 
-- name: cluster | cilium | load etcd cert key file
-  become: true
-  slurp:
-    src: "/var/lib/rancher/k3s/server/tls/etcd/server-client.key"
-  register: b64_etcd_cert_key
-  when:
-  - cilium_kube_router.cilium.etcd is defined
-  - cilium_kube_router.cilium.etcd
+# - name: cluster | cilium | load etcd cert key file
+#   become: true
+#   slurp:
+#     src: "/var/lib/rancher/k3s/server/tls/etcd/server-client.key"
+#   register: b64_etcd_cert_key
+#   when:
+#   - cilium_kube_router.cilium.etcd is defined
+#   - cilium_kube_router.cilium.etcd
 
 - name: cluster | cilium | deploy secret to k3s manifest directory
   become: true
@@ -41,9 +41,9 @@
         name: cilium-etcd-secrets
         namespace: kube-system
       data:
-        etcd-client-ca.crt: "{{ b64_etcd_ca.content }}"
-        etcd-client.crt: "{{ b64_etcd_cert.content }}"
-        etcd-client.key: "{{ b64_etcd_cert_key.content }}"
+        etcd-client-ca.crt: "{{ b64_etcd_ca }}"
+        etcd-client.crt: "{{ b64_etcd_cert }}"
+        etcd-client.key: "{{ b64_etcd_cert_key }}"
   when:
   - cilium_kube_router.cilium.etcd is defined
   - cilium_kube_router.cilium.etcd

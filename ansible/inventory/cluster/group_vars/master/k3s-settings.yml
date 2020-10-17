@@ -12,6 +12,3 @@ k3s_control_node: true
 k3s_tls_san:
 - "{{ keepalived.vip }}"
 - "k8s-master-vip"
-
-# Use embedded etcd
-k3s_etcd_datastore: true
