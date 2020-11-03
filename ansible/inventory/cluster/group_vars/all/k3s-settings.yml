@@ -9,8 +9,9 @@
 # k3s_release_version: "v1.19"
 # k3s_release_version: "48ed47c4a3e420fa71c18b2ec97f13dc0659778b"
 # k3s_release_version: "c3c983198f4c8c7480c486032ac7a70b267f69da"
-k3s_release_version: "43cb200fd0540b416ddec1216e371d41be2dadf2"
+# k3s_release_version: "43cb200fd0540b416ddec1216e371d41be2dadf2"
 # k3s_release_version: "v1.19.3+k3s1"
+k3s_release_version: "v1.19.3+k3s2"
 
 # Install using hard links rather than symbolic links.
 # ...if you are using the system-upgrade-controller you will need to use hard links rather than symbolic links as the controller will not be able to follow symbolic links.
