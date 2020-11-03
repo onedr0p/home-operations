@@ -25,7 +25,7 @@ cilium_kube_router:
   enabled: true
   cilium:
     registry: docker.io/cilium
-    version: 1.9.0-rc2
+    version: 1.9.0-rc3
     # Specify the CIDR for native routing
     # usually the network CIDR that your master and worker nodes are on
     # https://docs.cilium.io/en/v1.8/concepts/networking/routing/
