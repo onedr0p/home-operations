@@ -9,7 +9,7 @@
     path: /usr/sbin/{{ item }}-legacy
   loop:
   - "iptables"
-  - "ebtables"
+  # - "ebtables"
 
 # k3s still recommended use legacy iptables
 # https://rancher.com/docs/k3s/latest/en/known-issues/

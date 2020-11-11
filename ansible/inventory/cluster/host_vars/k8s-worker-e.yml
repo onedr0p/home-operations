@@ -1,7 +1,7 @@
 ---
 
 # IP address of node
-ansible_host: "192.168.42.125"
+ansible_host: "192.168.42.124"
 
 # IP Address to advertise for this node.
 # for more k3s host variables, see
@@ -22,6 +22,6 @@ longhorn:
 
 # Set enabled to true to mark this host as running a distributed storage rook-ceph
 rook_ceph:
-  enabled: false
+  enabled: true
   devices:
   - /dev/nvme0n1

@@ -11,4 +11,3 @@ k3s_control_node: true
 # Add additional hosname or IP as Subject Alternate Name in the TLS cert
 k3s_tls_san:
 - "{{ keepalived.vip }}"
-- "192.168.1.1"

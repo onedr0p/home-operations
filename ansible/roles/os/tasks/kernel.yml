@@ -37,6 +37,7 @@
     state: present
   loop:
   - br_netfilter
+  - nf_conntrack
   - overlay
   - rbd
   - ip_vs

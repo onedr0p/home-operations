@@ -52,7 +52,7 @@
   - name: rook-ceph | wipe the block device
     become: true
     command: "wipefs -af {{ item }}"
-    loop:
+    with_items:
     - "{{ rook_ceph.devices }}"
     when:
     - rook_ceph.enabled is defined

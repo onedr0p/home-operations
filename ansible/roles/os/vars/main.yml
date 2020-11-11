@@ -3,7 +3,7 @@
 packages:
   deb:
     htop_version: 3.0.2-1
-  install:
+  apt_install:
   - apt-transport-https
   - arptables
   - ca-certificates
@@ -28,10 +28,12 @@ packages:
   - nmap
   - ntpdate
   - open-iscsi
+  - pigz
   - psmisc
   - python3
   - python3-openssl
   - python3-pip
+  - rclone
   - rsync
   - scsitools
   - socat
@@ -40,7 +42,7 @@ packages:
   - unattended-upgrades
   - unzip
   - vim
-  remove:
+  apt_remove:
   - apparmor
   - apport
   - bcache-tools
