@@ -1,5 +1,0 @@
----
-
-- include: cluster-meta.yml
-- include: multipath.yml
-- include: disks.yml

@@ -1,12 +1,5 @@
 ---
 
-- include: preconfigure.yml
-  when:
-  - k3s_control_node is defined
-  - k3s_control_node
-  tags:
-  - all
-
 - include: kubeconfig.yml
   tags:
   - kubeconfig
@@ -27,13 +20,6 @@
   tags:
   - registry
 
-- include: coredns-etcd.yml
-  when:
-  - k3s_control_node is defined
-  - k3s_control_node
-  tags:
-  - coredns-etcd
-
 - include: cni-calico.yml
   when:
   - k3s_control_node is defined
@@ -42,12 +28,3 @@
   - calico.enabled
   tags:
   - cni-calico
-
-- include: cni-cilium-kube-router.yml
-  when:
-  - k3s_control_node is defined
-  - k3s_control_node
-  - cilium_kube_router.enabled is defined
-  - cilium_kube_router.enabled
-  tags:
-  - cni-cilium-kube-router
