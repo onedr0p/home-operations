@@ -31,7 +31,7 @@ k3s_flannel_backend: "none"
 # k3s_default_local_storage_path: "/dev/shm/k8s"
 
 # Use a specific control node address. IP or FQDN.
-k3s_control_node_address: "{{ keepalived.vip if keepalived.enabled is defined and keepalived.enabled else groups['master'][0] }}"
+# k3s_control_node_address: "{{ keepalived.vip if keepalived.enabled is defined and keepalived.enabled else groups['master'][0] }}"
 
 k3s_become_for_all: true
 
