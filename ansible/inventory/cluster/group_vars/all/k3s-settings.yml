@@ -6,19 +6,11 @@
 #
 
 # Use a specific version of k3s
-# k3s_release_version: "v1.19"
-# k3s_release_version: "48ed47c4a3e420fa71c18b2ec97f13dc0659778b"
-# k3s_release_version: "c3c983198f4c8c7480c486032ac7a70b267f69da"
-# k3s_release_version: "43cb200fd0540b416ddec1216e371d41be2dadf2"
-# k3s_release_version: "v1.19.3+k3s1"
 k3s_release_version: "v1.19.3+k3s2"
 
 # Install using hard links rather than symbolic links.
 # ...if you are using the system-upgrade-controller you will need to use hard links rather than symbolic links as the controller will not be able to follow symbolic links.
 k3s_install_hard_links: true
-
-# Use embedded etcd
-k3s_etcd_datastore: true
 
 # Do not deploy the following
 k3s_no_traefik: true
@@ -27,11 +19,6 @@ k3s_no_metrics_server: true
 k3s_no_flannel: true
 k3s_no_local_storage: true
 k3s_flannel_backend: "none"
-
-# k3s_default_local_storage_path: "/dev/shm/k8s"
-
-# Use a specific control node address. IP or FQDN.
-k3s_control_node_address: "{{ keepalived.vip if keepalived.enabled is defined and keepalived.enabled else groups['master'][0] }}"
 
 k3s_become_for_all: true
 
@@ -43,20 +30,8 @@ k3s_cluster_cidr: "10.69.0.0/16"
 # k3s_service_cidr: "10.96.0.0/16"
 k3s_service_cidr: "10.96.0.0/16"
 
-# Disable kube-proxy
-k3s_disable_kube_proxy: "{{ true if ((cilium_kube_router.enabled is defined and cilium_kube_router.enabled) or (calico.ebpf.enabled is defined and calico.ebpf.enabled)) else false }}"
-
-# Disable k3s default cloud controller manager.
-k3s_disable_cloud_controller: true
-
-# Disable k3s default network policy controller.
-# kube-router has it's own network-policy controller (or so it seems)
-# https://github.com/rancher/k3s/issues/1308
-# k3s_disable_network_policy: "{{ true if cilium_kube_router.enabled is defined and cilium_kube_router.enabled else false }}"
-k3s_disable_network_policy: false
-
 # Use experimental features (spooky!)
-k3s_use_experimental: true
+k3s_use_experimental: false
 
 # Enable any feature-gates
 k3s_kubelet_args:

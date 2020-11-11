@@ -40,15 +40,6 @@
   tags:
   - user
 
-- include: keepalived.yml
-  when:
-  - k3s_control_node is defined
-  - k3s_control_node 
-  - keepalived.enabled is defined
-  - keepalived.enabled
-  tags:
-  - keepalived
-
 - include: rsyslog.yml
   when:
   - rsyslog.enabled is defined 

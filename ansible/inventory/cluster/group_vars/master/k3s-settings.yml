@@ -7,7 +7,3 @@
 
 # Define the host as a control plane node
 k3s_control_node: true
-
-# Add additional hosname or IP as Subject Alternate Name in the TLS cert
-k3s_tls_san:
-- "{{ keepalived.vip }}"
