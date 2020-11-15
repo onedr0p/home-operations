@@ -3,6 +3,6 @@
 # Enable rsyslog
 # ...requires a rsyslog server already set up
 rsyslog:
-  enabled: false
-  ip: x.x.x.x
+  enabled: true
+  ip: 192.168.69.155
   port: 1514
