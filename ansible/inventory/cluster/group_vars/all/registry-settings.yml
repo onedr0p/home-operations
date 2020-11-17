@@ -9,5 +9,5 @@ registry:
   custom:
     enabled: false
     address: "http://x.x.x.x:5000"
-    username: "username"
+    username: "admin"
     password: "password"
