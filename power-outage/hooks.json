@@ -1,0 +1,7 @@
+[
+    {
+        "id": "power-outage",
+        "command-working-directory": "/app",
+        "execute-command": "power-outage.sh"   
+    }
+]

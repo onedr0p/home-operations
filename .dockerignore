@@ -1,0 +1,10 @@
+/.git/
+/.vscode/
+/adblock/
+/docker-compose/
+/grafana-dashboards/
+/ubuntu-autoinstall/
+/.envrc
+/.gitignore
+/README.md
+/kubeconfig

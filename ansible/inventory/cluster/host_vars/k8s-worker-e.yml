@@ -3,6 +3,12 @@
 # IP address of node
 ansible_host: "192.168.42.124"
 
+# Ansible user to ssh into servers with
+ansible_user: "ubuntu"
+# ansible_ssh_pass: "ubuntu"
+# ansible_ssh_common_args: "-o UserKnownHostsFile=/dev/null"
+# ansible_become_pass: "ubuntu"
+
 # IP Address to advertise for this node.
 # for more k3s host variables, see
 # https://github.com/PyratLabs/ansible-role-k3s#host-variables
