@@ -101,7 +101,7 @@
     create: true
     block: |
       # all
-      module.nf_conntrack.parameters.hashsize = 131072
+      # module.nf_conntrack.parameters.hashsize = 131072
       # ipv4
       net.ipv4.ip_forward = 1
       net.bridge.bridge-nf-call-arptables = 1
