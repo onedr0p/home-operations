@@ -2,8 +2,10 @@
 set -euo pipefail
 
 # Install Intel e1000e driver
+# https://downloadcenter.intel.com/download/15817/Intel-Network-Adapter-Driver-for-PCIe-Intel-Gigabit-Ethernet-Network-Connections-Under-Linux-?v=t
 # Run with sudo
-# Reboot after completion 
+# Reboot after completion
+
 
 echo "Downloading and extracting driver package..."
 wget https://downloadmirror.intel.com/15817/eng/e1000e-3.8.4.tar.gz
