@@ -20,80 +20,7 @@
     path: /usr/sbin/{{ item }}-legacy
   loop:
   - "ip6tables"
-  when:
-  - disable_ipv6 is not defined or not disable_ipv6
 
-- name: network | modules | unload ipv6
-  become: true
-  community.general.modprobe:
-    name: "{{ item }}"
-    state: absent
-  loop:
-  - ipv6
-  when:
-  - disable_ipv6 is defined
-  - disable_ipv6
-
-- name: network | modules | load ipv6
-  become: true
-  community.general.modprobe:
-    name: "{{ item }}"
-    state: present
-  loop:
-  - ipv6
-  when:
-  - disable_ipv6 is not defined or not disable_ipv6
-
-- name: network | modules | blacklist ipv6
-  become: true
-  copy:
-    content: "blacklist {{ item }}"
-    dest: "/etc/modprobe.d/{{ item }}.conf"
-  loop:
-  - ipv6
-  when:
-  - disable_ipv6 is defined
-  - disable_ipv6
-
-- name: network | modules | blacklist ipv6
-  become: true
-  file:
-    path: "/etc/modprobe.d/{{ item }}.conf"
-    state: absent
-  loop:
-  - ipv6
-  when:
-  - disable_ipv6 is not defined or not disable_ipv6
-
-- name: network | grub | disable ipv6
-  become: true
-  replace:
-    path: /etc/default/grub
-    regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=(?:(?![" ]{{ option | regex_escape }}=).)*)(?:[" ]{{ option | regex_escape }}=\S+)?(.*")$'
-    replace: '\1 {{ option }}={{ value }}\2'
-  vars:
-    option: "ipv6.disable"
-    value: "1"
-  notify: grub configuration changed
-  when:
-  - disable_ipv6 is defined
-  - disable_ipv6
-
-- name: network | grub | enable ipv6
-  become: true
-  replace:
-    path: /etc/default/grub
-    regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=(?:(?![" ]{{ option | regex_escape }}=).)*)(?:[" ]{{ option | regex_escape }}=\S+)?(.*")$'
-    replace: '\1 {{ option }}={{ value }}\2'
-  vars:
-    option: "ipv6.disable"
-    value: "0"
-  notify: grub configuration changed
-  when:
-  - disable_ipv6 is not defined or not disable_ipv6
-
-# ipv6 is already disabled in grub and kernel module is blacklisted 
-# no need to disable ipv6 in sysctl
 - name: network | sysctl
   become: true
   blockinfile:
@@ -106,11 +33,9 @@
       net.ipv4.ip_forward = 1
       net.bridge.bridge-nf-call-arptables = 1
       net.bridge.bridge-nf-call-iptables = 1
-      {% if disable_ipv6 is not defined or not disable_ipv6 %}
       # ipv6
       net.bridge.bridge-nf-call-ip6tables = 1
       net.ipv6.ip_forward = 1
-      {% endif %}
   register: sysctl_network
 
 - name: network | reload sysctl
