@@ -25,6 +25,7 @@ packages:
   - net-tools
   - netcat
   - nfs-common
+  - nano
   - nmap
   - ntpdate
   - open-iscsi
@@ -39,6 +40,7 @@ packages:
   - socat
   - software-properties-common
   - traceroute
+  - tree
   - unattended-upgrades
   - unzip
   - vim
