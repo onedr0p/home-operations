@@ -2,7 +2,7 @@
 
 # Prometheus Operator version from:
 # https://github.com/prometheus-operator/prometheus-operator/releases
-prometheus_operator_version: "0.43"
+prometheus_operator_version: "0.45"
 
 # URLs to the  Prometheus Operator CRDs
 prometheus_operator_crds:
