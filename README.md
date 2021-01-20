@@ -17,7 +17,7 @@
 
 Highly opinionated Ansible playbooks, Ansible roles, and other things that are used to maintain my homelab.
 
-## :computer:&nbsp; Hardware configuration
+## :gear:&nbsp; Hardware configuration
 
 _All my Kubernetes master and worker nodes below are running bare metal Ubuntu 20.04.x_
 
