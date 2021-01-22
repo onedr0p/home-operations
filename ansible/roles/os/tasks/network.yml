@@ -27,15 +27,9 @@
     path: /etc/sysctl.d/99-kubernetes-cri.conf
     create: true
     block: |
-      # all
-      # module.nf_conntrack.parameters.hashsize = 131072
-      # ipv4
       net.ipv4.ip_forward = 1
       net.bridge.bridge-nf-call-arptables = 1
       net.bridge.bridge-nf-call-iptables = 1
-      # ipv6
-      net.bridge.bridge-nf-call-ip6tables = 1
-      net.ipv6.ip_forward = 1
   register: sysctl_network
 
 - name: network | reload sysctl
